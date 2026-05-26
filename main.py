@@ -1,0 +1,50 @@
+import re
+
+password = input("Enter Password: ")
+
+strength = 0
+
+# Length Check
+if len(password) >= 8:
+    strength += 1
+
+# Uppercase Check
+if re.search(r"[A-Z]", password):
+    strength += 1
+
+# Lowercase Check
+if re.search(r"[a-z]", password):
+    strength += 1
+
+# Number Check
+if re.search(r"[0-9]", password):
+    strength += 1
+
+# Special Character Check
+if re.search(r"[@#$%^&*!]", password):
+    strength += 1
+
+if strength == 5:
+    print("Strong Password")
+elif strength >= 3:
+    print("Medium Password")
+else:
+    print("Weak Password")
+
+    if strength < 5:
+        print("\nSuggestions:")
+    
+    if len(password) < 8:
+        print("- Increase password length")
+
+    if not re.search(r"[A-Z]", password):
+        print("- Add uppercase letters")
+
+    if not re.search(r"[a-z]", password):
+        print("- Add lowercase letters")
+
+    if not re.search(r"[0-9]", password):
+        print("- Add numbers")
+
+    if not re.search(r"[@#$%^&*!]", password):
+        print("- Add special characters")
